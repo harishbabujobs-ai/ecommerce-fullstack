@@ -1,0 +1,41 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.env
+.env.*
+!.env.example
+*.db
+.mypy_cache/
+.DS_Store
+
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.db
+.pytest_cache/
+.mypy_cache/
+
+# React Native
+node_modules/
+.expo/
+.metro-cache/
+android/.gradle/
+android/app/build/
+ios/Pods/
+ios/build/
+*.xcuserstate
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

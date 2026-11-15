@@ -1,0 +1,1 @@
+"""Database query functions, kept separate from HTTP handling."""
