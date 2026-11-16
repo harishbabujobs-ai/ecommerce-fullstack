@@ -26,6 +26,12 @@ Use **Try it out** in Swagger. Register, log in, select **Authorize**, enter the
 
 For a step-by-step, beginner-level walkthrough of account registration, login, and using the access token, read [Registration and Login: A Beginner's Guide](docs/registration-and-login-for-beginners.md).
 
+## Screenshots
+
+| Swagger UI | ReDoc |
+| --- | --- |
+| ![Swagger UI interactive API documentation](docs/screenshots/swagger-ui.png) | ![ReDoc API reference](docs/screenshots/redoc.png) |
+
 ## Project Layout
 
 ```text

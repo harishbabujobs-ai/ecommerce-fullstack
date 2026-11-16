@@ -1,26 +1,18 @@
+# Python
 .venv/
+venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .coverage
 htmlcov/
+.mypy_cache/
+*.db
+
+# Environment
 .env
 .env.*
 !.env.example
-*.db
-.mypy_cache/
-.DS_Store
-
-
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-.env
-*.db
-.pytest_cache/
-.mypy_cache/
 
 # React Native
 node_modules/
@@ -36,6 +28,8 @@ ios/build/
 # IDE
 .vscode/
 .idea/
+.DS_Store
+*.xcuserstate
 
 # Logs
 *.log
