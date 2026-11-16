@@ -213,7 +213,11 @@ alembic check
 
 Tests use FastAPI `TestClient` and a separate in-memory SQLite database. They cover registration/login, permissions, product CRUD/search, cart add/update/remove/clear, totals, checkout, order ownership/history, invalid input, and inventory rollback. These are integration tests because they exercise HTTP routes, validation, services, and a real SQLAlchemy database together. Small unit tests can be added around pure pricing/security functions. Never test against the developer's `ecommerce.db`.
 
-## Architecture and Growth
+## System Design
+
+The current design is a stateless FastAPI service used by React or React Native clients over HTTP and JSON. SQLAlchemy persists application data in SQLite by default, with Alembic managing schema changes. JWTs carry authentication between requests. Payment processing is a deterministic mock, not a real payment integration.
+
+### Architecture
 
 ```mermaid
 flowchart LR
@@ -226,7 +230,13 @@ flowchart LR
     SVC --> PAY[Mock payment service]
 ```
 
+### Request and Transaction Flow
+
 The request lifecycle is client -> Uvicorn/ASGI -> FastAPI route -> validation/auth dependencies -> service -> repository/SQLAlchemy -> database -> Pydantic response -> client. Keep routes thin: HTTP status/parameters belong there, business rules belong in services, and reusable SQL reads belong in repositories. The order service owns checkout's transaction boundary.
+
+Checkout revalidates the cart and current product prices and inventory, creates the order and item snapshots, conditionally decrements stock, and clears the cart in one database transaction. A failure rolls back the database writes, keeping order totals and inventory consistent.
+
+### Scaling Path
 
 This project includes basic pagination, indexes, logging for unexpected failures, and configurable CORS. For a larger deployment, evolve deliberately:
 
